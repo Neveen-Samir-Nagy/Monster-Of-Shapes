@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Monster Of Shapes</title>
+<link rel=icon type=image/png sizes=16x16 href="./Images/icon.png">
+<link rel="stylesheet" type="text/css" href="./style.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lobster&display=swap" rel="stylesheet">
+<link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+ </head>
+ <body>
+<img id="monster"src="./Images/monster.png" alt="monster">
+
+<div id="menu">
+    <button onclick="start()" style="left: 500px; top: 100px;" class="button">Start Game</button>
+    <button style="left: 500px; top: 160px;" class="button" onclick="show_instrs()">Instructions</button>
+    <button style="left: 500px; top: 220px;" class="button">
+        <select class="select_options" id="speed" >
+          <option value="level" hidden>Level</option>
+          <option value="easy">Easy</option>
+          <option value="medium">Medium</option>
+          <option value="hard">Hard</option>
+        </select>
+    </button>
+    <button style="left: 500px; top:280px;" class="button" onclick="pause_resume();"><i class='fas fa-volume-mute' id="i_music"></i></button>
+</div>
+
+<div id="instrs" class="instrs">
+    <button onclick="return_to_menu()" class="fa fa-arrow-circle-left" style="position: absolute; border-color: transparent; background-color: transparent; font-size: 30px;left: 40px; top: 50px; float: left;"></button>
+    <h2>Instructions of the Game</h2>
+    <p>
+        In this game, you are asked to choose the shapes that fall (circles, triangles, squares),
+        If you pick three shapes of the same color on top of each other, your score will increase.<br>
+        There are three levels in this game:<br>
+        <span style="font-family: 'Lobster', cursive; font-size: x-large;">1- Easy: </span>At this level,
+        the speed of the shapes and the monster are slow.<br>
+        <span style="font-family: 'Lobster', cursive; font-size: x-large;">2- Medium: </span>At this level,
+        the speed of the shapes and the monster are faster than easy level and a skull shape is added to be 
+        with the shapes that fall.<br> Your score will decrease if you pick the skull shape.<br>
+        <span style="font-family: 'Lobster', cursive; font-size: x-large;">3- Hard: </span>At this level,
+        the speed of the shapes and the monster are faster than easy & medium levels and a bomb shape is added to be 
+        with the shapes that fall.<br> Your score will decrease if you pick the skull or bomb shape.<br>
+        <span style="font-family: 'Lobster', cursive; font-size: x-large;color: green;">You will win in case of: </span>your score was five(5).<br>
+        <span style="font-family: 'Lobster', cursive; font-size: x-large;color: darkred;">You will lose in case of: </span><br>
+        1- Your score was zero and you pick a skull or bomb shape.<br>
+        2- You pick a lot of shapes (not necessarily skull or bomb shapes) that make you cannot pick another shape.<br>
+        3- Time exceeded 1 hour and your score was less than five.
+    </p>
+</div>
+
+<audio id="audio" autoplay loop>
+    <source src="./Music/game_music.mp3" type="audio/mpeg">
+</audio>
+<div>
+    <div class="triangle" id="shape_left" style="position: absolute;left: 10px; top: 350px; border-bottom: transparent;"></div>
+    <div class="triangle" id="shape_right" style="position: absolute;left: 200px; top: 355px;border-bottom: transparent;"></div>
+</div>
+<div id="shapes">
+</div>
+<div id="hold_shapes">
+</div>
+<script src="./code.js"></script>
+ </body>
+ </html>

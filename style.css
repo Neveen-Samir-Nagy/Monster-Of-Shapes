@@ -1,0 +1,105 @@
+html { height:100%; }
+body
+{
+  background-image:url("./Images/background.png");
+  background-size:cover;
+  background-position:center;
+  background-attachment:fixed;
+  height:100%;  
+  margin:0px; 
+}
+h2{
+  position: absolute;;left: 80px; top: 40px;
+  font-size: xx-large;
+  font-family: 'Lobster', cursive;
+}
+p{
+  position: absolute;;left: 30px; top: 100px;
+  font-size: larger;
+  font-family: 'Lobster', cursive;
+  font-family: 'Yanone Kaffeesatz', sans-serif;
+  color: white;
+}
+
+.button{
+  position: absolute;
+  width: 450px;
+  height: 50px;
+  color: black;
+  background-color: cadetblue;
+  border: 2px solid cadetblue;
+  border-radius: 50% 50% 50% 50%;
+  float: inline-start;
+  font-family: 'Lobster', cursive;
+  font-size: 30px;
+  cursor: pointer;
+}
+.instrs{
+  position: absolute;
+  display: none;
+  left: 400px;
+  top: 40px;
+  background-color: cadetblue;
+  border-radius: 25%;
+  border: 2px solid cadetblue;
+  width: 750px;
+  height: 600px;
+}
+.select_options{
+  position: absolute;
+  background-color: cadetblue;
+  font-size: 25px;
+  color: black;
+  /* font-family: 'Saira Condensed', sans-serif; */
+  font-family: 'Lobster', cursive;
+  border: 1px solid cadetblue;
+  left: 180px;
+  top: 5px;
+}
+.skull_bomb{
+  position: absolute;
+  background-size:cover;
+  background-position:center;
+  width: 50px;
+  height: 50px;
+  top: 0px;
+}
+
+#monster{
+  position: absolute;
+  width: 270px;
+  height: 270px;
+  bottom: 0px;
+}
+#pos { color:white; font-size:18pt; }
+.circle {
+  border-radius: 50%;
+	width: 50px;
+	height: 50px;
+  border: 2px solid;
+  position: relative;
+  top: 0px;
+}
+.square {
+	width: 50px;
+	height: 50px;
+  border: 2px solid;
+  position: relative;
+  top: 0px;
+}
+.triangle {
+	width: 50;
+	height: 50;
+	border: 27px solid transparent;
+  border-top: 0;
+  border-bottom: 54px solid;
+  position: relative;
+  top: 0px;
+}
+.image{
+  position:absolute; 
+  width:500px;
+  height: 300px;
+  top: 150px;
+  left: 450px;
+}

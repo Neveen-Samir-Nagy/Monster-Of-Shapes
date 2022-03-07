@@ -1,0 +1,43 @@
+https://www.youtube.com/watch?v=TtCI5MorN2Y
+[script tag]
+https://www.tutorialsteacher.com/javascript/script-tag
+
+[key property]
+https://developer.mozilla.org/en-US/docs/Web/API/KeyboardEvent/key
+https://www.w3schools.com/jsref/event_key_key.asp
+https://www.w3.org/TR/uievents-key/#keys-navigation
+http://keycode.info/  --> for keyboard buttons key codes | press any keys to show key values or code
+
+[onkeydown event]
+https://developer.mozilla.org/en-US/docs/Web/API/Document/keydown_event
+https://www.w3schools.com/jsref/event_onkeydown.asp
+https://developer.mozilla.org/en-US/docs/Web/API/GlobalEventHandlers/onkeydown
+http://help.dottoro.com/ljlkwans.php
+https://w3c.github.io/uievents/#event-type-keydown
+https://w3c.github.io/uievents/#dom-keyboardevent-key
+
+[clientHeight Property]
+https://www.w3schools.com/jsref/prop_element_clientheight.asp
+
+[clientWidth Property]
+https://www.w3schools.com/jsref/prop_element_clientwidth.asp
+
+[addEventListener method]
+https://www.w3schools.com/jsref/met_element_addeventlistener.asp
+https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/addEventListener
+https://www.w3schools.com/js/js_htmldom_eventlistener.asp
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
