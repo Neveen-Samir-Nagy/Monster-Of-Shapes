@@ -134,7 +134,6 @@ var moving = function moving_shape(shape, idx) {
         var index = currentShapes.findIndex(x => x.ID === idx && x.shape ===shape);
         clearInterval(currentShapes[index]['variable']);
         hold_shapes_left.push({ "ID": idx, "shape": shape,"color":currentShapes[index]['color'] });
-        check_color(shape, idx, "left");
         document.getElementById(shape + "_" + idx).style.top = parseInt(shape_left.style.top, 10) + "px";
         document.getElementById(shape + "_" + idx).style.left = parseInt(shape_left.style.left, 10) + "px";
         currentShapes.splice(index, 1);
@@ -142,6 +141,7 @@ var moving = function moving_shape(shape, idx) {
         document.getElementById(shape + "_" + idx).remove();
         document.getElementById("hold_shapes").appendChild(elem);
         shape_left.style.top = Math.abs((parseInt(shape_left.style.top, 10) - parseInt(shape_left.offsetHeight, 10))) + "px";
+        check_color(shape, idx, "left");
         if(hold_shapes_left.length == 7){
             prob_lose();
         }
@@ -159,7 +159,6 @@ var moving = function moving_shape(shape, idx) {
         var index = currentShapes.findIndex(x => x.ID === idx && x.shape ===shape);
         clearInterval(currentShapes[index]['variable']);
         hold_shapes_right.push({ "ID": idx, "shape": shape,"color":currentShapes[index]['color'] });
-        check_color(shape, idx, "right");
         document.getElementById(shape + "_" + idx).style.top = parseInt(shape_right.style.top, 10) + "px";
         document.getElementById(shape + "_" + idx).style.left = parseInt(shape_right.style.left, 10) + "px";
         currentShapes.splice(index, 1);
@@ -167,6 +166,7 @@ var moving = function moving_shape(shape, idx) {
         document.getElementById(shape + "_" + idx).remove();
         document.getElementById("hold_shapes").appendChild(elem);
         shape_right.style.top = Math.abs((parseInt(shape_right.style.top, 10) - parseInt(shape_right.offsetHeight, 10))) + "px";
+        check_color(shape, idx, "right");
         if(hold_shapes_right.length == 7){
             prob_lose();
         }
@@ -186,8 +186,7 @@ function isRight(shape, idx){
 
 function check_color(shape, idx, direction){
     if(direction == "left"){
-        var index = currentShapes.findIndex(x => x.ID === idx && x.shape ===shape);
-        color = currentShapes[index]['color'];
+        color = hold_shapes_left[hold_shapes_left.length-1]['color'];
         if(prev_color_left == ""){
             prev_color_left = color;
             count_colors_left += 1;
@@ -223,8 +222,7 @@ function check_color(shape, idx, direction){
             }
         }
     }else{
-        var index = currentShapes.findIndex(x => x.ID === idx && x.shape ===shape);
-        color = currentShapes[index]['color'];
+        color = hold_shapes_right[hold_shapes_right.length-1]['color'];
         if(prev_color_right == ""){
             prev_color_right = color;
             count_colors_right += 1;
@@ -289,6 +287,8 @@ function increase_score(){
             document.getElementById("menu").style.display = "block";
         }, 2700);
     }else {
+        document.getElementById("shapes").innerHTML += '<div id="score" class="fade-in-text">Score:'+score+'</div>';
+        setTimeout(() => {document.getElementById("score").remove();}, 1000);
         if (document.getElementById('i_music').className == 'fa fa-volume-up') {
             audio.src = './Music/increaseScore.mp3';
         }
@@ -329,6 +329,8 @@ function prob_lose() {
             document.getElementById("menu").style.display = "block";
         }, 1700);
     } else if(score > 0){
+        document.getElementById("shapes").innerHTML += '<div id="score" class="fade-in-text">Score:'+score+'</div>';
+        setTimeout(() => {document.getElementById("score").remove();}, 1000);
         if (document.getElementById('i_music').className == 'fa fa-volume-up') {
             audio.src = './Music/decreaseScore.mp3';
         }

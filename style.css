@@ -50,7 +50,6 @@ p{
   background-color: cadetblue;
   font-size: 25px;
   color: black;
-  /* font-family: 'Saira Condensed', sans-serif; */
   font-family: 'Lobster', cursive;
   border: 1px solid cadetblue;
   left: 180px;
@@ -71,7 +70,7 @@ p{
   height: 270px;
   bottom: 0px;
 }
-#pos { color:white; font-size:18pt; }
+
 .circle {
   border-radius: 50%;
 	width: 50px;
@@ -103,3 +102,46 @@ p{
   top: 150px;
   left: 450px;
 }
+
+.fade-in-text {
+  position: absolute;
+  display: inline-block;
+  /* font-family: Arial, Helvetica, sans-serif; */
+  font-family: 'Lobster', cursive;
+  font-size: 150px;
+  color: black;
+  animation: fadeIn 5s;
+  animation-fill-mode: forwards;
+  /* -webkit-animation: fadeIn linear 7s;
+  -moz-animation: fadeIn linear 7s;
+  -o-animation: fadeIn linear 7s;
+  -ms-animation: fadeIn linear 7s; */
+  left: 500px;
+  top: 200px;
+}
+
+@keyframes fadeIn {
+  0% {opacity:1;}
+  100% {opacity:0;}
+}
+
+@-moz-keyframes fadeIn {
+  0% {opacity:1;}
+  100% {opacity:0;}
+}
+
+@-webkit-keyframes fadeIn {
+  0% {opacity:1;}
+  100% {opacity:0;}
+}
+
+@-o-keyframes fadeIn {
+  0% {opacity:1;}
+  100% {opacity:0;}
+}
+
+@-ms-keyframes fadeIn {
+  0% {opacity:1;}
+  100% {opacity:0;}
+}
+
