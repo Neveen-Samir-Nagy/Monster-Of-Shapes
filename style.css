@@ -37,13 +37,13 @@ p{
 .instrs{
   position: absolute;
   display: none;
-  left: 400px;
-  top: 40px;
+  left: 320px;
+  top: 30px;
   background-color: cadetblue;
   border-radius: 25%;
   border: 2px solid cadetblue;
-  width: 750px;
-  height: 600px;
+  width: 800px;
+  height: 630px;
 }
 .select_options{
   position: absolute;
