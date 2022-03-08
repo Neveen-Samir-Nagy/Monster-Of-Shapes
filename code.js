@@ -121,7 +121,7 @@ var moving = function moving_shape(shape, idx) {
         currentShapes.splice(index, 1);
         return;
     }
-    if (isLeft(shape, idx) || isLeft_2(shape, idx)
+    if (isLeft(shape, idx)
     ) {
         if (shape == "skull_bomb") {
             prob_lose();
@@ -146,7 +146,7 @@ var moving = function moving_shape(shape, idx) {
             prob_lose();
         }
         return;
-    } else if (isRight(shape, idx) || isRight_2(shape, idx)
+    } else if (isRight(shape, idx)
     ) {
         if (shape == "skull_bomb") {
             prob_lose();
@@ -179,23 +179,9 @@ function isLeft(shape, idx){
         && (Math.abs((shape_left.getBoundingClientRect().y + parseInt(shape_left.offsetHeight, 10) / 2) - (document.getElementById(shape + "_" + idx).getBoundingClientRect().y + parseInt(document.getElementById(shape + "_" + idx).offsetHeight, 10) / 2)) <= 15);
 }
 
-function isLeft_2(shape, idx){
-    return !(shape_left.style.left >= document.getElementById(shape + "_" + idx).style.right || shape_left.style.top >= document.getElementById(shape + "_" + idx).style.bottom || 
-    shape_left.style.right <= document.getElementById(shape + "_" + idx).style.left || shape_left.style.bottom <= document.getElementById(shape + "_" + idx).style.top)
-    && !(shape_left.style.left <= document.getElementById(shape + "_" + idx).style.right || shape_left.style.top <= document.getElementById(shape + "_" + idx).style.bottom || 
-    shape_left.style.right >= document.getElementById(shape + "_" + idx).style.left || shape_left.style.bottom >= document.getElementById(shape + "_" + idx).style.top);
-}
-
 function isRight(shape, idx){
     return (Math.abs((shape_right.getBoundingClientRect().x + parseInt(shape_right.offsetWidth, 10) / 2) - (document.getElementById(shape + "_" + idx).getBoundingClientRect().x + parseInt(document.getElementById(shape + "_" + idx).offsetWidth, 10) / 2)) <= 15)
     && (Math.abs((shape_right.getBoundingClientRect().y + parseInt(shape_right.offsetHeight, 10) / 2) - (document.getElementById(shape + "_" + idx).getBoundingClientRect().y + parseInt(document.getElementById(shape + "_" + idx).offsetHeight, 10) / 2)) <= 15);
-}
-
-function isRight_2(shape, idx){
-    return !(shape_right.style.left >= document.getElementById(shape + "_" + idx).style.right || shape_right.style.top >= document.getElementById(shape + "_" + idx).style.bottom || 
-    shape_right.style.right <= document.getElementById(shape + "_" + idx).style.left || shape_right.style.bottom <= document.getElementById(shape + "_" + idx).style.top)
-    && !(shape_right.style.left <= document.getElementById(shape + "_" + idx).style.right || shape_right.style.top <= document.getElementById(shape + "_" + idx).style.bottom || 
-    shape_right.style.right >= document.getElementById(shape + "_" + idx).style.left || shape_right.style.bottom >= document.getElementById(shape + "_" + idx).style.top);
 }
 
 function check_color(shape, idx, direction){
