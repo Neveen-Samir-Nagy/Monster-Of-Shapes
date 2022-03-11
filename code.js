@@ -6,7 +6,7 @@ var view_W = w - 280; var view_H = h - 180;
 var colors = [{ "color": "green", "weight": 1 / 3 }, { "color": "red", "weight": 1 / 3 }, { "color": "	yellow", "weight": 1 / 3 }];
 var shapes = [{ "shape": "circle", "weight": 1 / 5 }, { "shape": "square", "weight": 1 / 5 }, { "shape": "triangle", "weight": 1 / 5 }];
 var currentShapes = [], hold_shapes_left_left = [], hold_shapes_right = [];
-var game_over = false, start_var = false, win = false;
+var game_over = false, start_var = false, win = false, isPaused = false;
 var maxIdSquare = 0, maxIdCircle = 0, maxIdTriangle = 0, maxIdSkullBomb = 0;
 window.addEventListener("keydown", Control);
 let audio = document.getElementById("audio");
@@ -23,7 +23,7 @@ var create_shapes;
 function Control() {
     let key = event.key;
     let monster = document.getElementById('monster');
-    if (game_over || !start_var || win) {
+    if (game_over || !start_var || win || isPaused) {
         return;
     }
     if (key == "ArrowLeft" && moveX > 0)  // left arrow key
@@ -59,13 +59,15 @@ function Control() {
     }
 }
 
-
 function getRandomArbitrary(min, max) {
     return Math.random() * (max - min) + min;
 }
 
 function get_start() {
     create_shapes = setInterval(function () {
+        if(isPaused){
+            return;
+        }
         var random_left = Math.floor(getRandomArbitrary(0, (w - 50)));
         var shape = shapes[Math.floor(Math.random() * shapes.length)]['shape'];
         var color = colors[Math.floor(Math.random() * colors.length)]['color'];
@@ -109,6 +111,9 @@ function get_start() {
 }
 
 var moving = function moving_shape(shape, idx) {
+    if(isPaused){
+        return;
+    }
     if (!document.getElementById(shape + "_" + idx).style.top) {
         document.getElementById(shape + "_" + idx).style.top = "0px";
     }
@@ -280,10 +285,11 @@ function increase_score(){
             document.getElementById("shapes").innerHTML = "";
             document.getElementById("hold_shapes").innerHTML = "";
             currentShapes = [], hold_shapes_left = [], hold_shapes_right=[];
-            start_var = false;
+            start_var = false, isPaused = false;
             maxIdSquare = 0, maxIdCircle = 0, maxIdTriangle = 0, maxIdSkullBomb = 0;
             count_colors_left = 0, count_colors_right = 0, count_left = 0, count_right = 0;
             prev_color_left = "", prev_color_right = "";
+            document.getElementById("settings").style.display = "none";
             document.getElementById("menu").style.display = "block";
         }, 2700);
     }else {
@@ -319,11 +325,12 @@ function prob_lose() {
             document.getElementById("shapes").innerHTML = "";
             document.getElementById("hold_shapes").innerHTML = "";
             currentShapes = [], hold_shapes_left = [], hold_shapes_right=[];
-            start_var = false;
+            start_var = false, isPaused = false;
             maxIdSquare = 0, maxIdCircle = 0, maxIdTriangle = 0, maxIdSkullBomb = 0;
             count_colors_left = 0, count_colors_right = 0, count_left = 0, count_right = 0;
             prev_color_left = "", prev_color_right = "";
             document.getElementById("menu").style.display = "block";
+            document.getElementById("settings").style.display = "none";
         }, 1700);
     } else {
         score -= 1;
@@ -342,9 +349,11 @@ function prob_lose() {
 
 function start() {
     document.getElementById("menu").style.display = "none";
+    document.getElementById("settings").style.display = "block";
     start_var = true;
     game_over = false;
     win = false;
+    isPaused = false;
     time_start = new Date();
     shape_left.style.top = (parseInt(document.getElementById('monster').offsetTop,10) - 40) + "px";
     shape_right.style.top = (parseInt(document.getElementById('monster').offsetTop,10) - 40) + "px";
@@ -380,9 +389,11 @@ function start() {
 function pause_resume() {
     if (document.getElementById('i_music').className == 'fa fa-volume-up') {
         document.getElementById('i_music').className = 'fas fa-volume-mute';
+        document.getElementById("i_music_settings").className = 'fa fa-volume-mute';
         audio.pause();
     } else {
         document.getElementById('i_music').className = 'fa fa-volume-up';
+        document.getElementById("i_music_settings").className = 'fa fa-volume-up';
         audio.play();
     }
 }
@@ -395,4 +406,36 @@ function show_instrs() {
 function return_to_menu() {
     document.getElementById("menu").style.display = "block";
     document.getElementById("instrs").style.display = "none";
+    document.getElementById("settings").style.display = "none";
+    document.getElementById("menu_settings").style.display = "none";
+    clearInterval(create_shapes);
+    for (i = 0; i < currentShapes.length; i++) {
+        clearInterval(currentShapes[i]['variable']);
+    }
+    document.getElementById("shapes").innerHTML = "";
+    document.getElementById("hold_shapes").innerHTML = "";
+    currentShapes = [], hold_shapes_left = [], hold_shapes_right=[];
+    start_var = false;
+    maxIdSquare = 0, maxIdCircle = 0, maxIdTriangle = 0, maxIdSkullBomb = 0;
+    count_colors_left = 0, count_colors_right = 0, count_left = 0, count_right = 0;
+    prev_color_left = "", prev_color_right = "";
+}
+
+function show_settings(){
+    isPaused = true;
+    document.getElementById("menu").style.display = "none";
+    document.getElementById("settings").style.display = "block";
+    document.getElementById("menu_settings").style.display = "block";
+    if(document.getElementById("i_music").className == 'fa fa-volume-up'){
+        document.getElementById("i_music_settings").className = 'fa fa-volume-up';
+    }else{
+        document.getElementById("i_music_settings").className = 'fa fa-volume-mute';
+    }
+}
+
+function Continue(){
+    isPaused = false;
+    document.getElementById("menu").style.display = "none";
+    document.getElementById("settings").style.display = "block";
+    document.getElementById("menu_settings").style.display = "none";
 }

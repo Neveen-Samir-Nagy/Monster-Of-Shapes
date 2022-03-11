@@ -64,6 +64,13 @@
 </div>
 <div id="hold_shapes">
 </div>
+
+<div id="menu_settings" style="display: none;">
+    <button onclick="return_to_menu()" style="left: 500px; top: 100px;" class="button">Back to Menu</button>
+    <button style="left: 500px; top: 160px;" class="button" onclick="Continue()">Continue</button>
+    <button style="left: 500px; top:220px;" class="button" onclick="pause_resume();"><i class='fas fa-volume-mute' id="i_music_settings"></i></button>
+</div>
+<div style="float: right; display: none;" id="settings"><button onclick="show_settings()"><i style="font-size: larger; cursor: pointer;" onclick="show_settings()" class="fa fa-gear"></i></button></div>
 <script src="./code.js"></script>
  </body>
  </html>
