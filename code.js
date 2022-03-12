@@ -206,15 +206,9 @@ function isRight(shape, idx){
 }
 
 function touch_monster(shape, idx){
-    if ( document.getElementById('monster').style.left >= document.getElementById(shape + "_" + idx).style.right ||  document.getElementById('monster').style.top >= document.getElementById(shape + "_" + idx).style.bottom || 
-    document.getElementById('monster').style.right <= document.getElementById(shape + "_" + idx).style.left ||  document.getElementById('monster').style.bottom <= document.getElementById(shape + "_" + idx).style.top)
-    {
-        return false;
-    }
-    else
-    {
-        return true;
-    }
+    if (document.getElementById('monster').getBoundingClientRect().x+document.getElementById('monster').style.width >= document.getElementById(shape + "_" + idx).getBoundingClientRect().x) return false;   // too far to the side
+    if (document.getElementById('monster').getBoundingClientRect().y+document.getElementById('monster').style.height >= document.getElementById(shape + "_" + idx).getBoundingClientRect().y) return false; // too far above/below
+    return true;                                                    // otherwise, overlap   
 }
 
 function check_color(shape, idx, direction){
