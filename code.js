@@ -176,17 +176,45 @@ var moving = function moving_shape(shape, idx) {
             prob_lose();
         }
         return;
+    }else if(shape == "skull_bomb"){
+        if(touch_monster(shape, idx)){
+            prob_lose();
+        }
     }
 }
 
 function isLeft(shape, idx){
+    var y = 0;
+    if(shape_left.getBoundingClientRect().y > document.getElementById(shape + "_" + idx).getBoundingClientRect().y){
+        y = 15;
+    }else {
+        y = 60;
+    }
     return (Math.abs((shape_left.getBoundingClientRect().x + parseInt(shape_left.offsetWidth, 10) / 2) - (document.getElementById(shape + "_" + idx).getBoundingClientRect().x + parseInt(document.getElementById(shape + "_" + idx).offsetWidth, 10) / 2)) <= 15)
-        && (Math.abs((shape_left.getBoundingClientRect().y + parseInt(shape_left.offsetHeight, 10) / 2) - (document.getElementById(shape + "_" + idx).getBoundingClientRect().y + parseInt(document.getElementById(shape + "_" + idx).offsetHeight, 10) / 2)) <= 15);
+        && (Math.abs((shape_left.getBoundingClientRect().y + parseInt(shape_left.offsetHeight, 10) / 2) - (document.getElementById(shape + "_" + idx).getBoundingClientRect().y + parseInt(document.getElementById(shape + "_" + idx).offsetHeight, 10) / 2)) <= y);
 }
 
 function isRight(shape, idx){
+    var y = 0;
+    if(shape_right.getBoundingClientRect().y > document.getElementById(shape + "_" + idx).getBoundingClientRect().y){
+        y = 15;
+    }else {
+        y = 60;
+    }
     return (Math.abs((shape_right.getBoundingClientRect().x + parseInt(shape_right.offsetWidth, 10) / 2) - (document.getElementById(shape + "_" + idx).getBoundingClientRect().x + parseInt(document.getElementById(shape + "_" + idx).offsetWidth, 10) / 2)) <= 15)
-    && (Math.abs((shape_right.getBoundingClientRect().y + parseInt(shape_right.offsetHeight, 10) / 2) - (document.getElementById(shape + "_" + idx).getBoundingClientRect().y + parseInt(document.getElementById(shape + "_" + idx).offsetHeight, 10) / 2)) <= 15);
+    && (Math.abs((shape_right.getBoundingClientRect().y + parseInt(shape_right.offsetHeight, 10) / 2) - (document.getElementById(shape + "_" + idx).getBoundingClientRect().y + parseInt(document.getElementById(shape + "_" + idx).offsetHeight, 10) / 2)) <= y);
+}
+
+function touch_monster(shape, idx){
+    if ( document.getElementById('monster').style.left >= document.getElementById(shape + "_" + idx).style.right ||  document.getElementById('monster').style.top >= document.getElementById(shape + "_" + idx).style.bottom || 
+    document.getElementById('monster').style.right <= document.getElementById(shape + "_" + idx).style.left ||  document.getElementById('monster').style.bottom <= document.getElementById(shape + "_" + idx).style.top)
+    {
+        return false;
+    }
+    else
+    {
+        return true;
+    }
 }
 
 function check_color(shape, idx, direction){

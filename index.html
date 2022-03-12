@@ -13,6 +13,18 @@
  </head>
  <body>
 
+<audio id="audio" autoplay loop>
+    <source src="./Music/game_music.mp3" type="audio/mpeg">
+</audio>
+<div id="shapes">
+</div>
+<img id="monster"src="./Images/monster.png" alt="monster">
+<div>
+    <div class="triangle" id="shape_left" style="position: absolute;color: transparent;"></div>
+    <div class="triangle" id="shape_right" style="position: absolute;color: transparent;"></div>
+</div>
+<div id="hold_shapes">
+</div>
 <div id="menu">
     <button onclick="start()" style="left: 500px; top: 100px;" class="button">Start Game</button>
     <button style="left: 500px; top: 160px;" class="button" onclick="show_instrs()">Instructions</button>
@@ -38,31 +50,17 @@
         the speed of the shapes and the monster are slow.<br>
         <span style="font-family: 'Lobster', cursive; font-size: x-large;">2- Medium: </span>At this level,
         the speed of the shapes and the monster are faster than easy level and a skull shape is added to be 
-        with the shapes that fall.<br> Your score will decrease if you pick the skull shape.<br>
+        with the shapes that fall.<br> Your score will decrease if you pick the skull shape or the skull touches the monster.<br>
         <span style="font-family: 'Lobster', cursive; font-size: x-large;">3- Hard: </span>At this level,
         the speed of the shapes and the monster are faster than easy & medium levels and a bomb shape is added to be 
-        with the shapes that fall.<br> Your score will decrease if you pick the skull or bomb shape.<br>
+        with the shapes that fall.<br> Your score will decrease if you pick the skull or bomb shape or the skull or bomb touch the monster.<br>
         <span style="font-family: 'Lobster', cursive; font-size: x-large;color: green;">You will win in case of: </span>your score was five(5).<br>
         <span style="font-family: 'Lobster', cursive; font-size: x-large;color: darkred;">You will lose in case of: </span><br>
         1- Your score was zero and you pick a skull or bomb shape.<br>
         2- You pick a lot of shapes (not necessarily skull or bomb shapes) that make you cannot pick another shape.<br>
         3- Time exceeded 1 hour and your score was less than five.<br>
-        <span style="font-family: 'Lobster', cursive; font-size: xX-large;color: black;">Note: </span>You should be careful with picking the shapes.
 
     </p>
-</div>
-
-<audio id="audio" autoplay loop>
-    <source src="./Music/game_music.mp3" type="audio/mpeg">
-</audio>
-<div id="shapes">
-</div>
-<img id="monster"src="./Images/monster.png" alt="monster">
-<div>
-    <div class="triangle" id="shape_left" style="position: absolute;color: transparent;"></div>
-    <div class="triangle" id="shape_right" style="position: absolute;color: transparent;"></div>
-</div>
-<div id="hold_shapes">
 </div>
 
 <div id="menu_settings" style="display: none;">
