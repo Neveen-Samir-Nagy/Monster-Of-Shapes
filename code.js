@@ -15,7 +15,6 @@ shape_left.style.top = (parseInt(document.getElementById('monster').offsetTop,10
 var shape_right = document.getElementById("shape_right");
 shape_right.style.top = (parseInt(document.getElementById('monster').offsetTop,10) - 40) + "px";
 shape_right.style.left = "200px";
-var time_start;
 var prev_color_left = "", prev_color_right = "";
 var score = 0, count_colors_left = 0, count_colors_right = 0, count_left = 0, count_right = 0;
 var create_shapes;
@@ -104,9 +103,6 @@ function get_start() {
             currentShapes.push({ "ID": maxIdSkullBomb, "shape": "skull_bomb", "color":color, "variable": R });
             maxIdSkullBomb += 1;
         }
-        if (new Date().getHours() - time_start.getHours() >= 1) {
-            prob_lose();
-        }
     }, interval_creation);
 }
 
@@ -179,6 +175,11 @@ var moving = function moving_shape(shape, idx) {
     }else if(shape == "skull_bomb"){
         if(touch_monster(shape, idx)){
             prob_lose();
+            var index = currentShapes.findIndex(x => x.ID === idx && x.shape ===shape);
+            clearInterval(currentShapes[index]['variable']);
+            currentShapes.splice(index, 1);
+            document.getElementById(shape + "_" + idx).remove();
+            return;
         }
     }
 }
@@ -206,8 +207,8 @@ function isRight(shape, idx){
 }
 
 function touch_monster(shape, idx){
-    if (document.getElementById('monster').getBoundingClientRect().x+document.getElementById('monster').style.width >= document.getElementById(shape + "_" + idx).getBoundingClientRect().x) return false;   // too far to the side
-    if (document.getElementById('monster').getBoundingClientRect().y+document.getElementById('monster').style.height >= document.getElementById(shape + "_" + idx).getBoundingClientRect().y) return false; // too far above/below
+    if (document.getElementById('monster').offsetLeft >= document.getElementById(shape + "_" + idx).offsetLeft+document.getElementById(shape + "_" + idx).offsetWidth || document.getElementById('monster').offsetLeft+document.getElementById('monster').offsetWidth <= document.getElementById(shape + "_" + idx).offsetLeft) return false;
+    if (document.getElementById('monster').offsetTop >= document.getElementById(shape + "_" + idx).offsetTop+document.getElementById(shape + "_" + idx).offsetHeight) return false;
     return true;                                                    // otherwise, overlap   
 }
 
@@ -329,7 +330,7 @@ function increase_score(){
 }
 
 function prob_lose() {
-    if (score == 0 || (hold_shapes_left.length >= 7 && hold_shapes_right.length >= 7) || (new Date().getHours() - time_start.getHours() >= 1)) {
+    if (score == 0 || (hold_shapes_left.length >= 7 && hold_shapes_right.length >= 7)) {
         clearInterval(create_shapes);
         for (i = 0; i < currentShapes.length; i++) {
             clearInterval(currentShapes[i]['variable']);
@@ -376,7 +377,6 @@ function start() {
     game_over = false;
     win = false;
     isPaused = false;
-    time_start = new Date();
     shape_left.style.top = (parseInt(document.getElementById('monster').offsetTop,10) - 40) + "px";
     shape_right.style.top = (parseInt(document.getElementById('monster').offsetTop,10) - 40) + "px";
     count_colors_left = 0, count_colors_right = 0, count_left = 0, count_right = 0, score = 0;
